@@ -39,12 +39,12 @@ class GeniusComputerPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
 
-    def get_mobe(self, game):
+    def get_move(self, game):
         if len(game.available_moves()) == 9:
             square = random.choice(game.available_moves()) # randomly choose one
         else:
             # get the square based off the minimax algorithm
-            square = self.minimax(game, self.letter)
+            square = self.minimax(game, self.letter)['position']
         return square
 
     def minimax(self, state, player):
@@ -71,7 +71,7 @@ class GeniusComputerPlayer(Player):
 
         for possible_move in state.available_moves():
             # step 1: make a move, try that spot
-            state.make_move(possible_move. player)
+            state.make_move(possible_move, player)
 
             # step 2: recurse using minimax to simulate a game after making that move
             sim_score = self.minimax(state, other_player) # now, we alternate players
